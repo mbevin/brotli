@@ -130,7 +130,7 @@ static inline double FastLog2(size_t v) {
   static const double kLog2Inv = 1.4426950408889634f;
   return log(static_cast<double>(v)) * kLog2Inv;
 #else
-  return log2(static_cast<double>(v));
+  return ::log2(static_cast<double>(v));
 #endif
 }
 
