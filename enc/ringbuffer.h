@@ -88,7 +88,7 @@ class RingBuffer {
       // Split into two writes.
       // Copy into the end of the buffer, including the tail buffer.
       memcpy(&buffer_[masked_pos], bytes,
-             std::min(n, total_size_ - masked_pos));
+             (std::min)(n, total_size_ - masked_pos));
       // Copy into the beginning of the buffer
       memcpy(&buffer_[0], bytes + (size_ - masked_pos),
              n - (size_ - masked_pos));
@@ -120,7 +120,7 @@ class RingBuffer {
     if (PREDICT_FALSE(masked_pos < tail_size_)) {
       // Just fill the tail buffer with the beginning data.
       const size_t p = size_ + masked_pos;
-      memcpy(&buffer_[p], bytes, std::min(n, tail_size_ - masked_pos));
+      memcpy(&buffer_[p], bytes, (std::min)(n, tail_size_ - masked_pos));
     }
   }
 

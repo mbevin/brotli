@@ -746,7 +746,7 @@ class HashToBinaryTree {
       // These could not be calculated before, since they require knowledge
       // of both the previous and the current block.
       const size_t i_start = position - kMaxTreeCompLength + 1;
-      const size_t i_end = std::min(position, i_start + num_bytes);
+      const size_t i_end = (std::min)(position, i_start + num_bytes);
       for (size_t i = i_start; i < i_end; ++i) {
         // We know that i + kMaxTreeCompLength <= position + num_bytes, i.e. the
         // end of the current block and that we have at least
@@ -777,7 +777,7 @@ class HashToBinaryTree {
                                      BackwardMatch* __restrict matches) {
     const size_t cur_ix_masked = cur_ix & ring_buffer_mask;
     const size_t max_backward = window_mask_ - 15;
-    const size_t max_comp_len = std::min(max_length, kMaxTreeCompLength);
+    const size_t max_comp_len = (std::min)(max_length, kMaxTreeCompLength);
     const bool reroot_tree = max_length >= kMaxTreeCompLength;
     const uint32_t key = HashBytes(&data[cur_ix_masked]);
     size_t prev_ix = buckets_[key];
@@ -806,7 +806,7 @@ class HashToBinaryTree {
         }
         break;
       }
-      const size_t cur_len = std::min(best_len_left, best_len_right);
+      const size_t cur_len = (std::min)(best_len_left, best_len_right);
       const size_t len = cur_len +
           FindMatchLengthWithLimit(&data[cur_ix_masked + cur_len],
                                    &data[prev_ix_masked + cur_len],
@@ -950,7 +950,7 @@ struct Hashers {
       case 10:
         hash_h10->Init(lgwin, 0, size, false);
         for (size_t i = 0; i + kMaxTreeCompLength - 1 < size; ++i) {
-          hash_h10->Store(dict, std::numeric_limits<size_t>::max(), i);
+          hash_h10->Store(dict, (std::numeric_limits<size_t>::max)(), i);
         }
         break;
       default: break;
